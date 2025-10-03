@@ -384,7 +384,7 @@ const CampaignBuilder = () => {
             {/* --- TARGET IDS --- */}
             <SectionTitle title="Target IDs (Key/Value)" />
             <div className="flex gap-2 mb-2">
-              <input value={newTarget} onChange={(e) => setNewTarget(e.target.value)} onKeyDown={(e) => e.key === "Enter" && (e.preventDefault() || handleAddTarget())} className={`${inputClasses} flex-1`} placeholder="Add target ID (press Enter)" />
+              <input value={newTarget} onChange={(e) => setNewTarget(e.target.value)} onKeyDown={(e) => { if (e.key === "Enter") { e.preventDefault(); handleAddTarget(); }}} className={`${inputClasses} flex-1`} placeholder="Add target ID (press Enter)" />
               <button type="button" onClick={handleAddTarget} className="px-3 py-1 rounded-md bg-indigo-600 text-white text-xs hover:bg-indigo-700">Add</button>
             </div>
             <div className="flex flex-wrap mb-2 min-h-[1.5rem]">{targetIds.map((t) => (<Pill key={t} id={t} onRemove={handleRemoveTarget} />))}</div>
@@ -566,7 +566,7 @@ const CampaignBuilder = () => {
               <div>
                 <label className={smallLabel}>Cities / Regions</label>
                 <div className="flex gap-2 mb-2">
-                  <input value={newCity} onChange={(e) => setNewCity(e.target.value)} onKeyDown={(e) => e.key === "Enter" && (e.preventDefault() || handleAddCity())} className={inputClasses} placeholder="Add city (e.g., London, Tokyo)" />
+                  <input value={newCity} onChange={(e) => setNewCity(e.target.value)} onKeyDown={(e) => { if (e.key === "Enter") { e.preventDefault(); handleAddCity(); }}} className={inputClasses} placeholder="Add city (e.g., London, Tokyo)" />
                   <button type="button" onClick={handleAddCity} className="px-3 py-1 rounded-md bg-indigo-600 text-white text-xs hover:bg-indigo-700">Add</button>
                 </div>
                 <div className="flex flex-wrap min-h-[1.5rem] p-1 border border-gray-100 rounded">

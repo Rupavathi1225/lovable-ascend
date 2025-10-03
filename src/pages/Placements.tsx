@@ -265,14 +265,18 @@ const EventModal = ({ eventData, isEditing, isOpen, onClose, onSubmit }) => {
                     <Input 
                         label="Start Date" 
                         type="date"
+                        placeholder=""
                         value={formData.startDate} 
-                        onChange={(e) => handleFormChange('startDate', e.target.value)} 
+                        onChange={(e) => handleFormChange('startDate', e.target.value)}
+                        icon={Calendar}
                     />
                     <Input 
                         label="End Date (Optional)" 
                         type="date"
+                        placeholder=""
                         value={formData.endDate} 
-                        onChange={(e) => handleFormChange('endDate', e.target.value)} 
+                        onChange={(e) => handleFormChange('endDate', e.target.value)}
+                        icon={Calendar}
                     />
                 </div>
                 <Button onClick={handleSubmit} className="w-full" icon={isEditing ? Edit : Plus}>
@@ -325,7 +329,7 @@ const PlacementConfiguration = ({ data, onChange, onSubmit, isNew }) => {
         <h2 className="text-3xl font-extrabold text-gray-900 mt-2">Platform Selection</h2>
         {renderPlatformSelection()}
         
-        <Card title="Core Configuration">
+        <Card title="Core Configuration" description="Configure your placement settings">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <Input
               label="Platform Name" // Now fully editable
@@ -390,7 +394,7 @@ const PlacementConfiguration = ({ data, onChange, onSubmit, isNew }) => {
           </div>
         </Card>
 
-        <Card title="Advanced Settings">
+        <Card title="Advanced Settings" description="Additional configuration options">
           <Textarea
             label="Description"
             placeholder="Provide a comprehensive overview of the app's traffic patterns, promotion strategies, and fraud prevention measures."
@@ -418,7 +422,7 @@ const PlacementConfiguration = ({ data, onChange, onSubmit, isNew }) => {
       </div>
 
       <div className="lg:col-span-1">
-        <Card title="Current Status" className="sticky top-4">
+        <Card title="Current Status" description="View placement status" className="sticky top-4">
           <div className="space-y-4">
             <div className="flex justify-between p-3 rounded-lg bg-gray-50 border border-gray-200">
               <span className="text-gray-600 font-medium">Status:</span>
@@ -535,7 +539,7 @@ const EventsManager = ({ events, onAdd, onEdit, onDelete }) => {
                             ))
                         ) : (
                             <tr>
-                                <td colSpan="8" className="px-6 py-10 text-center text-gray-500">
+                                <td colSpan={8} className="px-6 py-10 text-center text-gray-500">
                                     <Calendar className="h-10 w-10 mx-auto mb-3 text-gray-400" />
                                     No events found. Click "Create New Event" to start a new promotion.
                                 </td>
@@ -808,6 +812,7 @@ export const Placements = () => {
         <div className="flex space-x-4 mb-10 items-center">
             <NavButton 
                 label="Add New Placement" 
+                secondaryLabel="Create new integration"
                 isActive={isNewPlacement} 
                 onClick={() => setIsNewPlacement(true)} 
             />
